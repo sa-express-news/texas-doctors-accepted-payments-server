@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+    	"allowJs": true,
+        "module": "commonjs",
+        "outDir": "build/",
+        "target": "es6",
+        "lib": ["ES2017", "DOM"]
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
