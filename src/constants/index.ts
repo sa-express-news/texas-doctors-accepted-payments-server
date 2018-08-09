@@ -1,8 +1,6 @@
-const base = '/doctorpayments'
-
 // GET request routes
-export const GETDOCTORS = `${base}/doctors/:docQuery`;
-export const GETPAYMENTS = `${base}/payments/:docID`;
+export const GETDOCTORS = '/doctors/:docQuery';
+export const GETPAYMENTS = '/payments/:docID';
 
 // data.world dataset path
 export const DATASETPATH = 'https://api.data.world/v0/sql/expressnews/drug-and-device-industry-payments-accepted-by-tx-doctors';
