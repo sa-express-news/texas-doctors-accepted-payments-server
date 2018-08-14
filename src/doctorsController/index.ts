@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import pullFromDB from '../pullFromDB';
+import { parseDoctorProperties } from '../utils';
 
 // constants
 import { DATASETPATH, DOCTORSSQLQUERYBASE } from '../constants';
@@ -28,6 +29,6 @@ export default async (req: Request, res: Response) => {
     if (!docs) {
         res.send('There was an error querying data.world');
     } else {
-        res.send(docs);
+        res.send(docs.map(parseDoctorProperties));
     }
 }
