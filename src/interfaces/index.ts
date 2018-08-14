@@ -4,7 +4,7 @@ export interface DoctorsParams {
 
 export interface DoctorsResponse {
     name: string;
-    physician_profile_id: string;
+    physician_profile_id: number;
     city: string;
     zip: string;
 }

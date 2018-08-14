@@ -1,3 +1,5 @@
+import { sortBy } from 'lodash';
+
 // interfaces
 import { DoctorsResponse, PaymentsResponse } from '../interfaces';
 
@@ -24,7 +26,10 @@ export const parseAddress = (str: string) => capitalizeFirstLetter(str, /^tx$/);
 
 export const parseHospitalName = (str: string) => str === 'NA' ? str : capitalizeFirstLetter(str, null);
 
-export const parseSentence = (str: string) => str ? str[0].toUpperCase() + str.substr(1).toLowerCase() : str;
+export const parseSentence = (str: string) => {
+    const trimmed = str.trim();
+    return trimmed ? trimmed[0].toUpperCase() + trimmed.substr(1).toLowerCase() : trimmed;
+}
 
 const parsePropertiesMap = {
     name: parseName,
@@ -48,3 +53,11 @@ export const parseProperties = (hash: any, keys: string[]) => keys.reduce((res: 
 export const parseDoctorProperties = (hash: DoctorsResponse) => parseProperties(hash, ['name', 'city']);
 
 export const parsePaymentProperties = (hash: PaymentsResponse) => parseProperties(hash, ['name', 'city', 'company', 'relatedto', 'for', 'address', 'teaching_hospital_name', 'physician_primary_type', 'specialtyspecific']);
+
+export const extractLastName = (doctor: DoctorsResponse) => {
+    const identifyRelevantSpace = /\s+(?!iii?$|iv$|jr.?$|sr.?$|dr.?$)/ig;
+    const nameArr = doctor.name.split(identifyRelevantSpace);
+    return nameArr[nameArr.length - 1];
+};
+
+export const orderByLastName = (doctors: DoctorsResponse[]) => sortBy(doctors, extractLastName);
