@@ -61,3 +61,5 @@ export const extractLastName = (doctor: DoctorsResponse) => {
 };
 
 export const orderByLastName = (doctors: DoctorsResponse[]) => sortBy(doctors, extractLastName);
+
+export const orderByDate = (payments: PaymentsResponse[]) => sortBy(payments, (payment: PaymentsResponse) => new Date(payment.paydate));

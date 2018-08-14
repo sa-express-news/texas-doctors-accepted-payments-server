@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import pullFromDB from '../pullFromDB';
-import { parsePaymentProperties } from '../utils';
+import { parsePaymentProperties, orderByDate } from '../utils';
 
 // constants
 import { DATASETPATH, PAYMENTSSQLQUERYBASE } from '../constants';
@@ -17,6 +17,6 @@ export default async (req: Request, res: Response) => {
     if (!payments) {
         res.send('There was an error querying data.world');
     } else {
-        res.send(payments.map(parsePaymentProperties));
+        res.send(orderByDate(payments.map(parsePaymentProperties)));
     }
 }

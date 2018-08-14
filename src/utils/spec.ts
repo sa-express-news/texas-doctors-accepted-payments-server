@@ -1,6 +1,6 @@
 import * as test from 'tape';
 
-import { parseName, parseAddress, parseSentence, parseHospitalName, extractLastName,orderByLastName } from './index';
+import { parseName, parseAddress, parseSentence, parseHospitalName, extractLastName, orderByLastName, orderByDate } from './index';
 
 test('parseName should return string with first letter of each word capitalized unless they are roman numerals', t => {
     let result = parseName('KING JAMES III');
@@ -123,6 +123,142 @@ test('orderByLastName should order an array of doctors by their last names', t =
             physician_profile_id: 78867,
             zip: '78215',
         },
+    ];
+    t.deepEqual(result, expected);
+    t.end();
+});
+
+test('orderByDate should order an array of payments by payment date', t => {
+    const payments = [
+        {
+            name: "GEORGE M. GALVAN",
+            id: 328757,
+            paydate: "2017-05-12",
+            amount: "$115.44",
+            paycount: 1,
+            company: "NEVRO CORP.",
+            relatedtoaproduct: true,
+            relatedto: "SENZA SPINAL CORD STIMULATION SYSTEM",
+            for: "FOOD AND BEVERAGE",
+            address: "4410 MEDICAL DR STE 610 NA, SAN ANTONIO, TX 78229",
+            teaching_hospital_name: "NA",
+            city: "SAN ANTONIO",
+            zip: "78229",
+            physician_primary_type: "MEDICAL DOCTOR",
+            specialtyspecific: "NEUROLOGICAL SURGERY",
+            count_companies: 13,
+            paysum: 194894.44000000003,
+            number_payments: 173,
+            count_product: 32
+        },
+        {
+            name: "GEORGE M. GALVAN",
+            id: 328757,
+            paydate: "2017-11-08",
+            amount: "$66.34",
+            paycount: 1,
+            company: "NEVRO CORP.",
+            relatedtoaproduct: true,
+            relatedto: "SENZA SPINAL CORD STIMULATION SYSTEM",
+            for: "FOOD AND BEVERAGE",
+            address: "4410 MEDICAL DR STE 610 NA, SAN ANTONIO, TX 78229",
+            teaching_hospital_name: "NA",
+            city: "SAN ANTONIO",
+            zip: "78229",
+            physician_primary_type: "MEDICAL DOCTOR",
+            specialtyspecific: "NEUROLOGICAL SURGERY",
+            count_companies: 13,
+            paysum: 194894.44000000003,
+            number_payments: 173,
+            count_product: 32
+        },
+        {
+            name: "GEORGE M. GALVAN",
+            id: 328757,
+            paydate: "2017-01-31",
+            amount: "$11.77",
+            paycount: 1,
+            company: "PROVIDENCE MEDICAL TECHNOLOGY, INC.",
+            relatedtoaproduct: true,
+            relatedto: "CAVUX CERVICAL CAGE, DTRAX SPINAL SYSTEM, ALLY BONE SCREW, BIOLOGIX ALLOGRAFT BONE ",
+            for: "FOOD AND BEVERAGE",
+            address: "4410 MEDICAL DR STE 610 NA, SAN ANTONIO, TX 78229",
+            teaching_hospital_name: "NA",
+            city: "SAN ANTONIO",
+            zip: "78229",
+            physician_primary_type: "MEDICAL DOCTOR",
+            specialtyspecific: "NEUROLOGICAL SURGERY",
+            count_companies: 13,
+            paysum: 194894.44000000003,
+            number_payments: 173,
+            count_product: 32
+        },
+    ];
+    let result = orderByDate(payments);
+    let expected = [
+        {
+            name: "GEORGE M. GALVAN",
+            id: 328757,
+            paydate: "2017-01-31",
+            amount: "$11.77",
+            paycount: 1,
+            company: "PROVIDENCE MEDICAL TECHNOLOGY, INC.",
+            relatedtoaproduct: true,
+            relatedto: "CAVUX CERVICAL CAGE, DTRAX SPINAL SYSTEM, ALLY BONE SCREW, BIOLOGIX ALLOGRAFT BONE ",
+            for: "FOOD AND BEVERAGE",
+            address: "4410 MEDICAL DR STE 610 NA, SAN ANTONIO, TX 78229",
+            teaching_hospital_name: "NA",
+            city: "SAN ANTONIO",
+            zip: "78229",
+            physician_primary_type: "MEDICAL DOCTOR",
+            specialtyspecific: "NEUROLOGICAL SURGERY",
+            count_companies: 13,
+            paysum: 194894.44000000003,
+            number_payments: 173,
+            count_product: 32
+        },
+        {
+            name: "GEORGE M. GALVAN",
+            id: 328757,
+            paydate: "2017-05-12",
+            amount: "$115.44",
+            paycount: 1,
+            company: "NEVRO CORP.",
+            relatedtoaproduct: true,
+            relatedto: "SENZA SPINAL CORD STIMULATION SYSTEM",
+            for: "FOOD AND BEVERAGE",
+            address: "4410 MEDICAL DR STE 610 NA, SAN ANTONIO, TX 78229",
+            teaching_hospital_name: "NA",
+            city: "SAN ANTONIO",
+            zip: "78229",
+            physician_primary_type: "MEDICAL DOCTOR",
+            specialtyspecific: "NEUROLOGICAL SURGERY",
+            count_companies: 13,
+            paysum: 194894.44000000003,
+            number_payments: 173,
+            count_product: 32
+        },
+        {
+            name: "GEORGE M. GALVAN",
+            id: 328757,
+            paydate: "2017-11-08",
+            amount: "$66.34",
+            paycount: 1,
+            company: "NEVRO CORP.",
+            relatedtoaproduct: true,
+            relatedto: "SENZA SPINAL CORD STIMULATION SYSTEM",
+            for: "FOOD AND BEVERAGE",
+            address: "4410 MEDICAL DR STE 610 NA, SAN ANTONIO, TX 78229",
+            teaching_hospital_name: "NA",
+            city: "SAN ANTONIO",
+            zip: "78229",
+            physician_primary_type: "MEDICAL DOCTOR",
+            specialtyspecific: "NEUROLOGICAL SURGERY",
+            count_companies: 13,
+            paysum: 194894.44000000003,
+            number_payments: 173,
+            count_product: 32
+        }
     ];
     t.deepEqual(result, expected);
     t.end();
